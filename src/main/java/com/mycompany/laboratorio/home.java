@@ -4,16 +4,14 @@
  */
 package com.mycompany.laboratorio;
 
-import java.awt.Image;
-import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 /**
  *
  * @author sjime
  */
 public class home extends javax.swing.JFrame {
-    String[] chats = new String[1000];
-    String[][] m = new String[1000][301];
+    String[] chats = new String[100];
+    String[][] m = new String[100][201];
     /**
      * Creates new form home
      */
@@ -108,7 +106,11 @@ public class home extends javax.swing.JFrame {
         String name = JOptionPane.showInputDialog("Ingese nombre del nuevo chat");
         boolean vacio = false;
         boolean vacio2 = false;
+<<<<<<< HEAD
         for (int i = 0; i < 1000; i++) {
+=======
+        for (int i = 0; i < 100; i++) {
+>>>>>>> origin/main
             if (chats[i] == null) {
                 chats[i] = name;
                 vacio = true;
@@ -125,8 +127,11 @@ public class home extends javax.swing.JFrame {
             app main = new app(chats, m);
             main.setVisible(true);
             this.setVisible(false);
+<<<<<<< HEAD
             Image icon = Toolkit.getDefaultToolkit().getImage("Chaticon.png");
             main.setIconImage(icon);
+=======
+>>>>>>> origin/main
         } else {
             JOptionPane.showMessageDialog(null, "No creado", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
