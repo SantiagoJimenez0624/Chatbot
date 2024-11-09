@@ -23,54 +23,24 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-          <EmptySpace min="0" pref="1006" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel1" min="-2" pref="994" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-=======
->>>>>>> origin/main
           <EmptySpace min="0" pref="1000" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-<<<<<<< HEAD
-=======
->>>>>>> origin/main
->>>>>>> origin/main
               </Group>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-          <EmptySpace min="0" pref="612" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-=======
->>>>>>> origin/main
           <EmptySpace min="0" pref="600" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-<<<<<<< HEAD
-=======
->>>>>>> origin/main
->>>>>>> origin/main
               </Group>
           </Group>
       </Group>
@@ -91,23 +61,6 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="237" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="input" pref="616" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="send" min="-2" pref="92" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jPanel2" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-=======
->>>>>>> origin/main
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="237" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -120,10 +73,6 @@
                       <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-<<<<<<< HEAD
-=======
->>>>>>> origin/main
->>>>>>> origin/main
               </Group>
           </Group>
         </DimensionLayout>
@@ -132,18 +81,6 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-                      <Group type="102" attributes="0">
-                          <Component id="jScrollPane1" pref="570" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="32767" attributes="0"/>
-=======
->>>>>>> origin/main
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -151,10 +88,6 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="9" max="32767" attributes="0"/>
-<<<<<<< HEAD
-=======
->>>>>>> origin/main
->>>>>>> origin/main
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="input" alignment="0" max="32767" attributes="0"/>
                               <Component id="send" alignment="0" pref="38" max="32767" attributes="0"/>
@@ -209,13 +142,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sendMouseClicked"/>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendActionPerformed"/>
-=======
->>>>>>> origin/main
->>>>>>> origin/main
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -228,44 +154,19 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="235" max="32767" attributes="0"/>
-=======
-<<<<<<< HEAD
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="310" max="32767" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
-=======
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace pref="310" max="32767" attributes="0"/>
->>>>>>> origin/main
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           </Group>
-<<<<<<< HEAD
                           <Component id="jScrollPane2" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-=======
-                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
->>>>>>> origin/main
->>>>>>> origin/main
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -273,7 +174,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButton1" min="-2" pref="32" max="-2" attributes="0"/>
-<<<<<<< HEAD
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -281,16 +181,6 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" pref="473" max="32767" attributes="0"/>
-=======
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <Component id="jScrollPane3" pref="461" max="32767" attributes="0"/>
-=======
-                      <Component id="jScrollPane2" pref="473" max="32767" attributes="0"/>
->>>>>>> origin/main
->>>>>>> origin/main
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -309,11 +199,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
               </Events>
             </Component>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> origin/main
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -342,10 +227,6 @@
                 </Component>
               </SubComponents>
             </Container>
-<<<<<<< HEAD
-=======
->>>>>>> origin/main
->>>>>>> origin/main
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -354,7 +235,6 @@
                 <Property name="text" type="java.lang.String" value="ORION"/>
               </Properties>
             </Component>
-<<<<<<< HEAD
             <Component class="javax.swing.JButton" name="jButton4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Limpiar chat"/>
@@ -363,44 +243,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
               </Events>
             </Component>
-=======
-<<<<<<< HEAD
-            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTextArea" name="txt">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="columns" type="int" value="20"/>
-                    <Property name="lineWrap" type="boolean" value="true"/>
-                    <Property name="rows" type="int" value="1"/>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
-                    <Property name="wrapStyleWord" type="boolean" value="true"/>
-                    <Property name="alignmentX" type="float" value="2.0"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder roundedCorners="true" thickness="5">
-                          <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
-                        </LineBorder>
-                      </Border>
-                    </Property>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                  </AuxValues>
-                </Component>
-              </SubComponents>
-            </Container>
-=======
->>>>>>> origin/main
->>>>>>> origin/main
           </SubComponents>
         </Container>
       </SubComponents>

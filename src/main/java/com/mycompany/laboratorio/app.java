@@ -12,7 +12,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import org.json.JSONObject;
 import java.util.Arrays;
-import javax.swing.*;
+import java.util.Scanner;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author sjime
@@ -27,8 +29,10 @@ public class app extends javax.swing.JFrame {
     public app(String[] chats, String[][]m2) {
         initComponents();
         history.setListData(chats);
+        chatsNames = chats;
         m = m2;
         history.setSelectedIndex(0);
+        
     }
     private String getResponseFromAPI(String modelName, String promptText) {
         String response;
@@ -43,6 +47,21 @@ public class app extends javax.swing.JFrame {
         }
         
         return response;
+    }
+    public static String formatResponse(String response, int maxLength) {
+        StringBuilder formattedResponse = new StringBuilder();
+        int index = 0;
+
+        while (index < response.length()) {
+            if (index + maxLength < response.length()) {
+                formattedResponse.append(response, index, index + maxLength).append("\n");
+            } else {
+                formattedResponse.append(response.substring(index));
+            }
+            index += maxLength;
+        }
+
+        return formattedResponse.toString();
     }
     
     /**
@@ -93,11 +112,6 @@ public class app extends javax.swing.JFrame {
                 sendMouseClicked(evt);
             }
         });
-        send.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendActionPerformed(evt);
-            }
-        });
 
         jPanel2.setBackground(new java.awt.Color(149, 210, 179));
 
@@ -119,26 +133,18 @@ public class app extends javax.swing.JFrame {
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(jList1);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel1.setText("ORION");
+
         jButton4.setText("Limpiar chat");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setText("ORION");
-        txt.setEditable(false);
-        txt.setBackground(new java.awt.Color(255, 255, 255));
-        txt.setColumns(20);
-        txt.setLineWrap(true);
-        txt.setRows(1);
-        txt.setToolTipText("");
-        txt.setWrapStyleWord(true);
-        txt.setAlignmentX(2.0F);
-        txt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 5, true));
-        jScrollPane3.setViewportView(txt);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -151,13 +157,6 @@ public class app extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(310, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(264, 264, 264)
-                .addComponent(jButton1)
-                .addContainerGap())
-            .addComponent(jScrollPane3)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,9 +168,6 @@ public class app extends javax.swing.JFrame {
                         .addComponent(jButton4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -180,7 +176,7 @@ public class app extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,11 +193,11 @@ public class app extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(input)
                             .addComponent(send, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
@@ -242,26 +238,16 @@ public class app extends javax.swing.JFrame {
         indice = history.getSelectedIndex();
         int indice2 = 0;
         boolean vacio = false;
-        StringBuilder conversation2 = new StringBuilder();
+        String[] conversation;
 
         // Buscar el primer índice vacío en m[indice]
-        for (int i = 1; i <= 201; i++) {
+        for (int i = 0; i < 300; i++) {
             if (m[indice][i] == null) {
                 m[indice][i] = pregunta; // Guardar la pregunta
                 vacio = true;
                 indice2 = i + 1;
-
-                for (int j = 1; j <= 201; j++) {
-                    if (m[indice][j] != null) {
-                        conversation2.append(m[indice][j]).append("\n");
-                    }
-                    else{
-                        break;
-                    }
-                }
-
-                txt.setText(conversation2.toString()); // Convertir StringBuilder a String
-
+                conversation = Arrays.copyOfRange(m[indice], 0, 301); // Cambiado a 0
+                jList1.setListData(conversation);
                 JOptionPane.showMessageDialog(null,"Respondiendo");
                 break;
             }
@@ -269,32 +255,30 @@ public class app extends javax.swing.JFrame {
         
         
         if (vacio) {
+            conversation = Arrays.copyOfRange(m[indice], 0, 301); // Cambiado a 0
+            jList1.setListData(conversation);
+
             // Generar la respuesta usando la IA
             String modelName = "llama3.2";
             String respuesta = getResponseFromAPI(modelName, pregunta);
-            conversation2 = new StringBuilder();
-            m[indice][indice2] = respuesta; // Guardar la respuesta
-            // Actualizar la conversación en el Text Area
-            for (int j = 1; j <= 201; j++) {
-                if (m[indice][j] != null) {
-                    conversation2.append(m[indice][j]).append("\n");
-                }
-                else{
-                    break;
-                }
-            }
+            respuesta = formatResponse(respuesta,80);
 
-            txt.setText(conversation2.toString());
+            m[indice][indice2] = respuesta; // Guardar la respuesta
+
+            // Actualizar la conversación en la JList
+            conversation = Arrays.copyOfRange(m[indice], 0, 301); // Asegurarse de mostrar todo, incluyendo la pregunta
+            jList1.setListData(conversation);
             JOptionPane.showMessageDialog(null, "Chat guardado automaticamente");
         } else {
             JOptionPane.showMessageDialog(null, "No creado", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
+        
     }//GEN-LAST:event_sendMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String name = JOptionPane.showInputDialog("Ingese nombre del nuevo chat");
         boolean vacio = false;
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             if (chatsNames[i] == null) {
                 chatsNames[i] = name;
                 vacio = true;
@@ -334,22 +318,6 @@ public class app extends javax.swing.JFrame {
     }
 
     }//GEN-LAST:event_jButton4ActionPerformed
-        StringBuilder conversation2 = new StringBuilder();
-        for (int j = 1; j <= 201; j++) {
-            if (m[index][j] != null) { // Verificar que no sea null
-                conversation2.append(m[index][j]).append("\n");
-            }
-            else{
-                break;
-            }
-        }
-
-        txt.setText(conversation2.toString());
-    }//GEN-LAST:event_historyMouseClicked
-
-    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,13 +335,6 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton send;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JButton send;
-    public javax.swing.JTextArea txt;
     // End of variables declaration//GEN-END:variables
 }
 
