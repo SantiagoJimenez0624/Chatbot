@@ -247,7 +247,7 @@ public class app extends javax.swing.JFrame {
         
         if (vacio) {
             // Generar la respuesta usando la IA
-            String modelName = "llama3.2:1b";
+            String modelName = "llama3.2";
             String respuesta = getResponseFromAPI(modelName, pregunta);
             conversation2 = new StringBuilder();
             m[indice][indice2] = respuesta; // Guardar la respuesta
