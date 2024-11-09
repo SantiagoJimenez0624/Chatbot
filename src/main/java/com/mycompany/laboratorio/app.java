@@ -21,8 +21,8 @@ public class app extends javax.swing.JFrame {
     String[] chatsNames = new String[100];
     String[][] m = new String[100][201];
     int indice;
-    /**
-     * Creates new form apps
+     /**
+     * Creates new form app
      */
     public app(String[] chats, String[][]m2) {
         initComponents();
@@ -30,7 +30,6 @@ public class app extends javax.swing.JFrame {
         chatsNames = chats;
         m = m2;
         history.setSelectedIndex(0);
-        
     }
     private String getResponseFromAPI(String modelName, String promptText) {
         String response;
