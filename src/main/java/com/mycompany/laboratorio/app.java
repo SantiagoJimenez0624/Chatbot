@@ -12,16 +12,18 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import org.json.JSONObject;
 import java.util.Arrays;
-import javax.swing.*;
+import java.util.Scanner;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author sjime
  */
 public class app extends javax.swing.JFrame {
-    String[] chatsNames = new String[100];
-    String[][] m = new String[100][201];
+    String[] chatsNames = new String[1000];
+    String[][] m = new String[1000][301];
     int indice;
-     /**
+    /**
      * Creates new form app
      */
     public app(String[] chats, String[][]m2) {
@@ -30,6 +32,7 @@ public class app extends javax.swing.JFrame {
         chatsNames = chats;
         m = m2;
         history.setSelectedIndex(0);
+        
     }
     private String getResponseFromAPI(String modelName, String promptText) {
         String response;
@@ -45,6 +48,22 @@ public class app extends javax.swing.JFrame {
         
         return response;
     }
+    public static String formatResponse(String response, int maxLength) {
+        StringBuilder formattedResponse = new StringBuilder();
+        int index = 0;
+
+        while (index < response.length()) {
+            if (index + maxLength < response.length()) {
+                formattedResponse.append(response, index, index + maxLength).append("\n");
+            } else {
+                formattedResponse.append(response.substring(index));
+            }
+            index += maxLength;
+        }
+
+        return formattedResponse.toString();
+    }
+   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,8 +82,9 @@ public class app extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        txt = new javax.swing.JTextArea();
+        resputxt = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,11 +113,6 @@ public class app extends javax.swing.JFrame {
                 sendMouseClicked(evt);
             }
         });
-        send.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendActionPerformed(evt);
-            }
-        });
 
         jPanel2.setBackground(new java.awt.Color(149, 210, 179));
 
@@ -117,37 +132,43 @@ public class app extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("ORION");
 
-        txt.setEditable(false);
-        txt.setBackground(new java.awt.Color(255, 255, 255));
-        txt.setColumns(20);
-        txt.setLineWrap(true);
-        txt.setRows(1);
-        txt.setToolTipText("");
-        txt.setWrapStyleWord(true);
-        txt.setAlignmentX(2.0F);
-        txt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 5, true));
-        jScrollPane3.setViewportView(txt);
+        jButton4.setText("Limpiar chat");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        resputxt.setColumns(20);
+        resputxt.setRows(5);
+        jScrollPane3.setViewportView(resputxt);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(310, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(264, 264, 264)
-                .addComponent(jButton1)
-                .addContainerGap())
-            .addComponent(jScrollPane3)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(247, 247, 247)
+                        .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton4)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -156,16 +177,18 @@ public class app extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(input, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(7, 7, 7))
+                        .addComponent(input)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,36 +196,36 @@ public class app extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(input)
-                            .addComponent(send, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                        .addGap(12, 12, 12))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(send, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(11, 11, 11))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1006, Short.MAX_VALUE)
+            .addGap(0, 1055, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 994, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 27, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 28, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -218,26 +241,23 @@ public class app extends javax.swing.JFrame {
         indice = history.getSelectedIndex();
         int indice2 = 0;
         boolean vacio = false;
-        StringBuilder conversation2 = new StringBuilder();
+        StringBuilder conversation = new StringBuilder();
 
         // Buscar el primer índice vacío en m[indice]
-        for (int i = 1; i <= 201; i++) {
+        for (int i = 1; i < 201; i++) {
             if (m[indice][i] == null) {
                 m[indice][i] = pregunta; // Guardar la pregunta
                 vacio = true;
                 indice2 = i + 1;
-
+                
                 for (int j = 1; j <= 201; j++) {
-                    if (m[indice][j] != null) {
-                        conversation2.append(m[indice][j]).append("\n");
-                    }
-                    else{
+                    if (m[indice][j]!=null) {
+                        conversation.append(m[indice][j]).append("\n");
+                    }else{
                         break;
                     }
                 }
-
-                txt.setText(conversation2.toString()); // Convertir StringBuilder a String
-
+                resputxt.setText(conversation.toString());
                 JOptionPane.showMessageDialog(null,"Respondiendo");
                 break;
             }
@@ -245,32 +265,36 @@ public class app extends javax.swing.JFrame {
         
         
         if (vacio) {
+            
+
             // Generar la respuesta usando la IA
             String modelName = "llama3.2";
             String respuesta = getResponseFromAPI(modelName, pregunta);
-            conversation2 = new StringBuilder();
+            respuesta = formatResponse(respuesta,80);
+            conversation = new StringBuilder();
             m[indice][indice2] = respuesta; // Guardar la respuesta
-            // Actualizar la conversación en el Text Area
-            for (int j = 1; j <= 201; j++) {
-                if (m[indice][j] != null) {
-                    conversation2.append(m[indice][j]).append("\n");
-                }
-                else{
+
+            // Actualizar la conversación en la JList
+            for (int j = 1; j < 201; j++) {
+                if(m[indice][j]!=null){
+                    conversation.append(m[indice][j]).append("\n");
+                }else{
                     break;
                 }
             }
-
-            txt.setText(conversation2.toString());
+             resputxt.setText(conversation.toString());
             JOptionPane.showMessageDialog(null, "Chat guardado automaticamente");
         } else {
             JOptionPane.showMessageDialog(null, "No creado", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
+        
+        
     }//GEN-LAST:event_sendMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String name = JOptionPane.showInputDialog("Ingese nombre del nuevo chat");
         boolean vacio = false;
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             if (chatsNames[i] == null) {
                 chatsNames[i] = name;
                 vacio = true;
@@ -290,22 +314,35 @@ public class app extends javax.swing.JFrame {
 
     private void historyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyMouseClicked
         int index = history.getSelectedIndex();
-        StringBuilder conversation2 = new StringBuilder();
-        for (int j = 1; j <= 201; j++) {
-            if (m[index][j] != null) { // Verificar que no sea null
-                conversation2.append(m[index][j]).append("\n");
-            }
-            else{
+        StringBuilder conversation = new StringBuilder();
+        for (int j = 1; j < 201; j++) {
+            if (m[indice][j]!=null) {
+                conversation.append(m[indice][j]).append("\n");
+            }else{
                 break;
             }
+           
         }
-
-        txt.setText(conversation2.toString());
+        resputxt.setText(conversation.toString());
     }//GEN-LAST:event_historyMouseClicked
 
-    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sendActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+     int selectedIndex = history.getSelectedIndex();
+    if (selectedIndex >= 0) {
+       
+        Arrays.fill(m[selectedIndex], null); 
+        
+        // Limpiar el `JList` visualmente
+        resputxt.setText("");  
+        
+        // Mostrar mensaje de confirmación
+        JOptionPane.showMessageDialog(null, "Chat limpio");
+    } else {
+        JOptionPane.showMessageDialog(null, "Seleccione un chat para limpiar", "Información", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,13 +352,14 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JList<String> history;
     private javax.swing.JTextField input;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea resputxt;
     private javax.swing.JButton send;
-    public javax.swing.JTextArea txt;
     // End of variables declaration//GEN-END:variables
 }
 
