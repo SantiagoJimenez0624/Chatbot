@@ -63,6 +63,7 @@ public class app extends javax.swing.JFrame {
 
         return formattedResponse.toString();
     }
+   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,10 +81,10 @@ public class app extends javax.swing.JFrame {
         send = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        resputxt = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,11 +129,6 @@ public class app extends javax.swing.JFrame {
             }
         });
 
-        jList1.setBackground(new java.awt.Color(216, 239, 211));
-        jList1.setBorder(null);
-        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(jList1);
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("ORION");
 
@@ -143,31 +139,36 @@ public class app extends javax.swing.JFrame {
             }
         });
 
+        resputxt.setColumns(20);
+        resputxt.setRows(5);
+        jScrollPane3.setViewportView(resputxt);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(264, 264, 264)
+                        .addGap(247, 247, 247)
                         .addComponent(jButton1))
-                    .addComponent(jScrollPane2))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jButton4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton4)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -182,10 +183,12 @@ public class app extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(input)
-                        .addGap(18, 18, 18)
-                        .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,23 +200,23 @@ public class app extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(input)
-                            .addComponent(send, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                        .addGap(12, 12, 12))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(send, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(11, 11, 11))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 1055, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 27, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 28, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,16 +241,23 @@ public class app extends javax.swing.JFrame {
         indice = history.getSelectedIndex();
         int indice2 = 0;
         boolean vacio = false;
-        String[] conversation;
+        StringBuilder conversation = new StringBuilder();
 
         // Buscar el primer índice vacío en m[indice]
-        for (int i = 0; i < 300; i++) {
+        for (int i = 1; i < 201; i++) {
             if (m[indice][i] == null) {
                 m[indice][i] = pregunta; // Guardar la pregunta
                 vacio = true;
                 indice2 = i + 1;
-                conversation = Arrays.copyOfRange(m[indice], 0, 301); // Cambiado a 0
-                jList1.setListData(conversation);
+                
+                for (int j = 1; j <= 201; j++) {
+                    if (m[indice][j]!=null) {
+                        conversation.append(m[indice][j]).append("\n");
+                    }else{
+                        break;
+                    }
+                }
+                resputxt.setText(conversation.toString());
                 JOptionPane.showMessageDialog(null,"Respondiendo");
                 break;
             }
@@ -255,23 +265,29 @@ public class app extends javax.swing.JFrame {
         
         
         if (vacio) {
-            conversation = Arrays.copyOfRange(m[indice], 0, 301); // Cambiado a 0
-            jList1.setListData(conversation);
+            
 
             // Generar la respuesta usando la IA
             String modelName = "llama3.2";
             String respuesta = getResponseFromAPI(modelName, pregunta);
             respuesta = formatResponse(respuesta,80);
-
+            conversation = new StringBuilder();
             m[indice][indice2] = respuesta; // Guardar la respuesta
 
             // Actualizar la conversación en la JList
-            conversation = Arrays.copyOfRange(m[indice], 0, 301); // Asegurarse de mostrar todo, incluyendo la pregunta
-            jList1.setListData(conversation);
+            for (int j = 1; j < 201; j++) {
+                if(m[indice][j]!=null){
+                    conversation.append(m[indice][j]).append("\n");
+                }else{
+                    break;
+                }
+            }
+             resputxt.setText(conversation.toString());
             JOptionPane.showMessageDialog(null, "Chat guardado automaticamente");
         } else {
             JOptionPane.showMessageDialog(null, "No creado", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
+        
         
     }//GEN-LAST:event_sendMouseClicked
 
@@ -298,8 +314,16 @@ public class app extends javax.swing.JFrame {
 
     private void historyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyMouseClicked
         int index = history.getSelectedIndex();
-        String[] conversation = Arrays.copyOfRange(m[index], 0, 301);
-        jList1.setListData(conversation);
+        StringBuilder conversation = new StringBuilder();
+        for (int j = 1; j < 201; j++) {
+            if (m[indice][j]!=null) {
+                conversation.append(m[indice][j]).append("\n");
+            }else{
+                break;
+            }
+           
+        }
+        resputxt.setText(conversation.toString());
     }//GEN-LAST:event_historyMouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -309,13 +333,14 @@ public class app extends javax.swing.JFrame {
         Arrays.fill(m[selectedIndex], null); 
         
         // Limpiar el `JList` visualmente
-        jList1.setListData(new String[0]);  
+        resputxt.setText("");  
         
         // Mostrar mensaje de confirmación
         JOptionPane.showMessageDialog(null, "Chat limpio");
     } else {
         JOptionPane.showMessageDialog(null, "Seleccione un chat para limpiar", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
+    
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -329,11 +354,11 @@ public class app extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea resputxt;
     private javax.swing.JButton send;
     // End of variables declaration//GEN-END:variables
 }
